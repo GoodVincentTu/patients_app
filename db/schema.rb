@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160905014018) do
+ActiveRecord::Schema.define(version: 20160905083548) do
 
   create_table "locations", force: :cascade do |t|
     t.string   "code"
@@ -26,11 +26,12 @@ ActiveRecord::Schema.define(version: 20160905014018) do
     t.date     "birth"
     t.integer  "gender"
     t.string   "status"
-    t.string   "location"
-    t.integer  "viewed_count"
+    t.integer  "viewed_count", default: 0
     t.integer  "location_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_patients_on_deleted_at"
     t.index ["location_id"], name: "index_patients_on_location_id"
   end
 

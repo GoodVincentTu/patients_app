@@ -1,6 +1,7 @@
-<p id="notice"><%= notice %></p>
+<h1>Locations show</h1>
+<p>Code: <%= @location.code %></p>
+<p>Name: <%= @location.name %></p>
 
-<h1>Patients</h1>
 
 <table>
   <thead>
@@ -30,7 +31,3 @@
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Patient', new_patient_path %>

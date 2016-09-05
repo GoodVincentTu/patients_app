@@ -1,10 +1,12 @@
 class PatientsController < ApplicationController
   before_action :set_patient, only: [:show, :edit, :update, :destroy]
-  before_action :set_location
+
   # GET /patients
   # GET /patients.json
   def index
-    @patients = Patient.all
+    @gender_select = Patient.genders.map { | k, v | [ v, k ] }
+    binding.pry
+    @patients = Patient.includes(:location).where(:deleted_at => nil)
   end
 
   # GET /patients/1
@@ -15,6 +17,7 @@ class PatientsController < ApplicationController
   # GET /patients/new
   def new
     @patient = Patient.new
+    @location = Location.all
   end
 
   # GET /patients/1/edit
@@ -69,6 +72,6 @@ class PatientsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def patient_params
-      params.fetch(:patient, {:first_name, :middle_name, :last_name, :birth, :gender, :location, :status, :viewed_count})
+      params.fetch(:patient, {}).permit(:first_name, :middle_name, :last_name, :birth, :gender, :status, :location_id, :viewed_count)
     end
 end

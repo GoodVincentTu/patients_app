@@ -6,7 +6,9 @@ class Patient < ApplicationRecord
   validates :middle_name, :length => { :maximum => 10}
   validates :last_name, :length => { :maximum => 30 }
 
-  enum gender: [ :not_available, :male, :female ]
+  enum genders: [ :not_available, :male, :female ]
+
+  acts_as_paranoid
 
   scope :on_treatment, -> { where( :status => "treatment" )}
 end

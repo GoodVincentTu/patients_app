@@ -31,6 +31,10 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 
 gem 'simple_form'
+gem "paranoia", "~> 2.2.0.pre"
+
+gem 'pry-rails'
+gem 'pry-byebug'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

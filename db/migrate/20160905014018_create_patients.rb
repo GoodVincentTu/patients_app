@@ -8,7 +8,7 @@ class CreatePatients < ActiveRecord::Migration[5.0]
       t.integer :gender
       t.string :status
       t.string :location
-      t.integer :viewed_count
+      t.integer :viewed_count, default: 0
       t.references :location, foreign_key: true
 
       t.timestamps

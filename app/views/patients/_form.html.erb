@@ -1,4 +1,4 @@
-<%= form_for(patient) do |f| %>
+<%= simple_form_for @patient do |f| %>
   <% if patient.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(patient.errors.count, "error") %> prohibited this patient from being saved:</h2>
@@ -11,7 +11,15 @@
     </div>
   <% end %>
 
+  <%= f.input :first_name %>
+  <%= f.input :middle_name %>
+  <%= f.input :last_name %>
+  <%= f.input :birth, start_year: Date.today.year - 110, end_year: Date.today.year %>
+  <%= f.input :gender, collection: Hash[ Patient.genders.map { |k, v| [ k.split('_').join(' ').capitalize , k ] } ], as: :radio_buttons %>
+  <%= f.input :status, collection: [ "Initial", "Referred", "Treatment", "Closed" ], as: :select %>
+  <%= f.input :location_id, collection: @location, as: :select %>
+
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit 'Patient Register'%>
   </div>
 <% end %>
