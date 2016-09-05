@@ -5,7 +5,6 @@ class PatientsController < ApplicationController
   # GET /patients.json
   def index
     @gender_select = Patient.genders.map { | k, v | [ v, k ] }
-    binding.pry
     @patients = Patient.includes(:location).where(:deleted_at => nil)
   end
 
